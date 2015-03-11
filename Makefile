@@ -41,11 +41,11 @@ stop:
 		docker stop docker_reg
 
 clean: stopall
-		docker rm docker_reg_ui
-		docker rm docker_reg
-		docker rmi ${IMG_REG}
-		docker rmi ${IMG_REGUI}
-		rm *.tar.gz
+		docker rm docker_reg_ui ||: 
+		docker rm docker_reg ||:
+		docker rmi ${IMG_REG} ||:
+		docker rmi ${IMG_REGUI} ||:
+		rm *.tar.gz ||:
 
 test:
 		echo "${ROOT_IP}"
