@@ -43,6 +43,7 @@ stop:
 clean: stopall
 		docker rm docker_reg_ui
 		docker rm docker_reg
+		rm *.tar.gz
 
 test:
 		echo "${ROOT_IP}"
