@@ -22,7 +22,6 @@ ENV JAVA_HOME /usr/lib/jvm/java-7-openjdk-amd64/
 # Install grails and project dependencies
 WORKDIR ${DRUI_ROOT}
 RUN wget -O- "https://github.com/atc-/docker-registry-web/archive/v0.97.0.tar.gz" | tar zx --strip-components=1 -C ${DRUI_ROOT}
-RUN ./grailsw help
 RUN ./grailsw war \
     && cp target/docker-registry-ui-*.war /var/lib/tomcat7/webapps/ROOT.war
 
