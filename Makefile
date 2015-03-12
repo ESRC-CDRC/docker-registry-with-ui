@@ -38,7 +38,7 @@ reg: volume
 volume:
 		echo 'Creating docker data container'
 		# holding the registry data in /tmp/registry for docker-registry and web configuration in /var/lib/h2 for docker-registry-ui
-		if [ -z "$(shell docker ps -a | grep docker_reg_data)" ]; then docker create --name ${DATA_CONTAINER} -v /tmp/registry -v /var/lib/h2 ubuntu:14.04; fi
+		if [ -z "$(shell docker ps -a | grep docker_reg_data)" ]; then docker create --name ${DATA_CONTAINER} -v /tmp/registry -v /var/lib/h2 phusion/baseimage:0.9.16; fi
 
 stop:
 		docker stop docker_reg_ui
