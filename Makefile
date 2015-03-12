@@ -28,17 +28,30 @@ tar:
 		tar czf cdrc-docker-registry-ui.tar.gz -C docker-registry-ui .
 
 webui: reg volume
-		echo 'Starting docker web UI for docker registry...'
-		docker run --name ${UI_CONTAINER} -p ${WEB_UI_PORT}:8080 --volumes-from ${DATA_CONTAINER} -e REG1=http://${ROOT_IP}:2625/v1/ -d ${IMG_REGUI}
+		@echo 'Starting docker web UI for docker registry...'
+		@docker run -d --name ${UI_CONTAINER} \
+			-p ${WEB_UI_PORT}:8080 \
+			--volumes-from ${DATA_CONTAINER} \
+			-e REG1=http://${ROOT_IP}:2625/v1/ \
+			${IMG_REGUI}
 
 reg: volume
-		echo 'Starting docker registry service...'
-		docker run --name ${REG_CONTAINER} -p ${REG_PORT}:5000 --volumes-from ${DATA_CONTAINER} -e GUNICORN_OPTS=[--preload] -d ${IMG_REG}
+		@echo 'Starting docker registry service...'
+		@docker run -d --name ${REG_CONTAINER} \
+			-p ${REG_PORT}:5000 \
+			--volumes-from ${DATA_CONTAINER} \
+			-e GUNICORN_OPTS=[--preload] \
+			${IMG_REG}
 
 volume:
-		echo 'Creating docker data container'
+		@echo 'Creating docker data container'
 		# holding the registry data in /tmp/registry for docker-registry and web configuration in /var/lib/h2 for docker-registry-ui
-		if [ -z "$(shell docker ps -a | grep docker_reg_data)" ]; then docker create --name ${DATA_CONTAINER} -v /tmp/registry -v /var/lib/h2 phusion/baseimage:0.9.16; fi
+		@if [ -z "$(shell docker ps -a | grep docker_reg_data)" ]; then \
+			docker create --name ${DATA_CONTAINER} \
+				-v /var/lib/docker-registry \
+				-v /var/lib/h2 \
+				phusion/baseimage:0.9.16; \
+		fi
 
 stop:
 		docker stop docker_reg_ui
