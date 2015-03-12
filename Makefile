@@ -9,7 +9,7 @@ REG_CONTAINER=docker_reg
 UI_CONTAINER=docker_reg_ui
 DATA_CONTAINER=docker_reg_data
 DOCKER_HUB=gladys.geog.ucl.ac.uk
-DOCKER_REPO=cdrc
+DOCKER_REPO=esrc_cdrc
 IMG_REG=${DOCKER_HUB}/${DOCKER_REPO}/docker-registry
 IMG_REGUI=${DOCKER_HUB}/${DOCKER_REPO}/docker-registry-ui
 

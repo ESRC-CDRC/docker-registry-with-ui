@@ -1,6 +1,6 @@
 FROM phusion/baseimage:0.9.16
 MAINTAINER CDRC_UCL
-# --TAG: gladys.geog.ucl.ac.uk/esrc-cdrc/docker-registry
+# --TAG: gladys.geog.ucl.ac.uk/esrc_cdrc/docker-registry
 
 ENV DOCKER_REGISTRY_HOME /usr/lib/docker-registry
 

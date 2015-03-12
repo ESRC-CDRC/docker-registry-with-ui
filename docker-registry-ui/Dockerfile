@@ -1,6 +1,6 @@
 FROM phusion/baseimage:0.9.16
 MAINTAINER CDRC_UCL
-# --TAG: gladys.geog.ucl.ac.uk/esrc-cdrc/docker-registry-ui
+# --TAG: gladys.geog.ucl.ac.uk/esrc_cdrc/docker-registry-ui
 
 # Make sure sshd is disabled
 RUN rm -rf /etc/service/sshd /etc/my_init.d/00_regen_ssh_host_keys.sh
