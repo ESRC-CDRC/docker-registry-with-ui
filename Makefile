@@ -19,6 +19,10 @@ images:
 		(cd docker-registry; docker build -t ${IMG_REG} .)
 		(cd docker-registry-ui; docker build -t ${IMG_REGUI} .)
 
+fromtar:
+		docker build -t ${IMG_REG} - < cdrc-docker-registry.tar.gz
+		docker build -t ${IMG_REG} - < cdrc-docker-registry-ui.tar.gz
+
 tar:
 		tar czf cdrc-docker-registry.tar.gz -C docker-registry .
 		tar czf cdrc-docker-registry-ui.tar.gz -C docker-registry-ui .
