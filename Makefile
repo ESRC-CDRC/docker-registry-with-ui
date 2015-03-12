@@ -57,14 +57,18 @@ stop:
 		docker stop docker_reg_ui
 		docker stop docker_reg
 
-clean: stopall
+restart:
+		docker restart docker_reg
+		docker restart docker_reg_ui
+
+clean: stop
 		docker rm docker_reg_ui ||: 
 		docker rm docker_reg ||:
+
+cleanall: clean
 		docker rmi ${IMG_REG} ||:
 		docker rmi ${IMG_REGUI} ||:
 		rm *.tar.gz ||:
-
-test:
-		echo "${ROOT_IP}"
+		@echo "The data container docker_reg_data are not removed."
 
 .PHONY: reg stopall clean volume images tar start webui
